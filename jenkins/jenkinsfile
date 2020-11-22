@@ -1,6 +1,6 @@
 #!groovy
 //Одновременно запустится только 1 билд
-properties([disableConcurrentBuilds])
+properties([disableConcurrentBuilds]())
 
 pipeline {
     agent {
