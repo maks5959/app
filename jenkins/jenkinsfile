@@ -11,10 +11,16 @@ pipeline {
             timestamps()
         }
     stages {
-            stage("Preparations") {
+            stage("nalichie") {
                     steps {
                             sh 'ls -la /home/maks'
                     }
+            }
+            stage("perehod") {
+                    steps {
+                            sh 'cd /home/maks/app'
+                    }
+            }         
             }
     }    
 } 
