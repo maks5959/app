@@ -13,14 +13,14 @@ pipeline {
     stages {
             stage("nalichie") {
                     steps {
-                            sh 'ls -la /home/maks'
+                        sh 'ls -la /home/maks'
                     }
-                    
+            }
             stage("perehod") {
                     steps {
-                            sh 'cd /home/maks/app'
+                        sh 'cd /home/maks/app'
                     }
-            }         
+                     
             }
     }    
 } 
