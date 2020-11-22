@@ -15,7 +15,7 @@ pipeline {
                     steps {
                             sh 'ls -la /home/maks'
                     }
-            }
+                    
             stage("perehod") {
                     steps {
                             sh 'cd /home/maks/app'
