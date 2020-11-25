@@ -19,9 +19,9 @@ RUN apk update && apk add --no-cache php-bcmath \
     libmemcached-dev \
     libpng-dev \
     zlib-dev 
-    && docker-php-ext-install gd mysqli
+#    && docker-php-ext-install gd mysqli
      
-    WORKDIR /var/www/test
+    WORKDIR /var/www/test/sss
      
     COPY html/ .
      
