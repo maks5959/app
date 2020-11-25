@@ -6,7 +6,9 @@ pipeline {
     agent {
         label 'master'
         }
-    triggers { pollSCM('*/2 * * * *') }    
+    triggers { 
+     pollSCM('*/2 * * * *') 
+     }    
         options{
             buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
             timestamps()
@@ -27,7 +29,7 @@ pipeline {
                    steps {
                        echo "=============START====================="
                        dir ('docker/php-fpm') {
-                               sh 'docker build .'
+                               sh 'docker build -t php-fpm7.3:v1 .'
                        } 
                    }
             }
