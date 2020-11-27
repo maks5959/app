@@ -25,6 +25,15 @@ pipeline {
                     }
                      
             }
+            stage("Docker Login") {
+                    steps {
+                        echo "=============Docker Login============="
+                        withCredentials( [usernamePassword(credentialsId: 'dockerhub_maks', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')])
+                             sh """
+                             docker login -u $USERNAME -p $PASSWORD
+                             """ 
+                    }
+            }
             stage("create image php-fpm") {
                    steps {
                        echo "=============START====================="
