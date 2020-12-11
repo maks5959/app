@@ -28,7 +28,8 @@ pipeline {
             stage("Docker Login") {
                     steps {
                         echo "=============Docker Login============="
-                        docker.withRegistry(['https://registry.hub.docker.com', 'dockerhub_maks'])
+                        withDockerRegistry([credentialsId: 'dockerhub_maks', url: 'https://registry.hub.docker.com']) {
+                        //docker.withRegistry(['https://registry.hub.docker.com', 'dockerhub_maks'])
                         //withCredentials([usernamePassword(credentialsId: 'dockerhub_maks')])
                              sh """
                              docker login 
