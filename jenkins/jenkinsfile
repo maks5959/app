@@ -3,6 +3,11 @@
 properties([disableConcurrentBuilds()])
 
 pipeline {
+  enviroment {
+    imagename = "app/test"
+    registryCredential = 'dockerhub_maks'
+    dockerImage = ''    
+  }     
     agent {
         label 'master'
         }
@@ -25,23 +30,45 @@ pipeline {
                     }
                      
             }
-            stage("Docker Login") {
+            stage("build image") {
                     steps {
-                        echo "=============Docker Login============="
-                        withDockerRegistry([ credentialsId: 'dockerhub_maks', url: '']) { 
+                      script {
+                         dockerImage = docker.build imagename
+                      }   
+                    }   
+            }
+            stage("Deploy Image") {
+                    steps {
+                      script {
+                        docker.withRegistry( '', registryCredential ) {
+                           dockerImage.push("$BUILD_NUMBER")
+                            dockerImage.push('latest') 
+                        }  
+                      }  
+
+                }
+            }
+            //stage("Docker Login") {
+              //      steps {
+                //        echo "=============Docker Login============="
+                  //      withDockerRegistry([ credentialsId: 'dockerhub_maks', url: '']) { 
                         //docker.withRegistry(['https://registry.hub.docker.com', 'dockerhub_maks'])
                         //withCredentials([usernamePassword(credentialsId: 'dockerhub_maks')])
-                             sh 'docker login'}
-                    }
-            }
-            stage("create image php-fpm") {
-                   steps {
-                       echo "=============START====================="
-                       dir ('docker/php-fpm') {
-                               sh 'docker build -t php-fpm7.3:v1 .'
-                       } 
-                   }
-            }
+                         //   sh 'docker login'}
+                    //}
+            //}
+            //stage("create image php-fpm") {
+              //     steps {
+                //       echo "=============START====================="
+                  //     dir ('docker/php-fpm') {
+                    //           sh 'docker build -t php-fpm7.3:v1 .'
+                      // } 
+                   //}
+            //}
+            //stage('publish in DockerHub image nginx') {
+             //       steps {
+               //         withDockerRegistry([credentialsId: 'dockerhub_maks', url: ''])
+                 //   }
     }    
 } 
  
