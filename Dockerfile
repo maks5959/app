@@ -23,6 +23,6 @@ RUN apk update && apk add --no-cache php-bcmath \
      
     WORKDIR /var/www/test/sss
      
-    COPY /home/maks/app/php-fpm/html/ /var/www/test/sss 
+    COPY ./php-fpm/html/ var/www/test/sss 
      
     CMD ["php-fpm"]
