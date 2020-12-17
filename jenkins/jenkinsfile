@@ -4,7 +4,7 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
   environment {
-    imagename = "app/test"
+    imagename = "maksfox/myapp"
     registryCredential = 'dockerhub_maks'
     dockerImage = ''    
   }     
