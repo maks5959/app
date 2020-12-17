@@ -3,7 +3,7 @@
 properties([disableConcurrentBuilds()])
 
 pipeline {
-  enviroment {
+  environment {
     imagename = "app/test"
     registryCredential = 'dockerhub_maks'
     dockerImage = ''    
