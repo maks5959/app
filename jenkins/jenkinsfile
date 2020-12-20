@@ -17,16 +17,10 @@ pipeline {
             timestamps()
         }
     stages {
-            stage("nalichie") {
-                    steps {
-                        sh 'ls -la /home/maks'
-                    }
-            }
             stage("perehod") {
                     steps {
                         sh 'cd /home/maks/app'
-                    }
-                     
+                    }         
             }
             stage("build image") {
                     steps {
@@ -46,27 +40,6 @@ pipeline {
 
                 }
             }
-            //stage("Docker Login") {
-              //      steps {
-                //        echo "=============Docker Login============="
-                  //      withDockerRegistry([ credentialsId: 'dockerhub_maks', url: '']) { 
-                        //docker.withRegistry(['https://registry.hub.docker.com', 'dockerhub_maks'])
-                        //withCredentials([usernamePassword(credentialsId: 'dockerhub_maks')])
-                         //   sh 'docker login'}
-                    //}
-            //}
-            //stage("create image php-fpm") {
-              //     steps {
-                //       echo "=============START====================="
-                  //     dir ('docker/php-fpm') {
-                    //           sh 'docker build -t php-fpm7.3:v1 .'
-                      // } 
-                   //}
-            //}
-            //stage('publish in DockerHub image nginx') {
-             //       steps {
-               //         withDockerRegistry([credentialsId: 'dockerhub_maks', url: ''])
-                 //   }
-    }    
+          }    
 } 
  
