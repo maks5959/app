@@ -1,20 +1,30 @@
 #!groovy
 //Одновременно запустится только 1 билд
 properties([disableConcurrentBuilds()])
+buildName = currentBuild.number
+currentBuild.displayName = "Build container PHP-FPM 7.3"
+currentBuild.description = "Version ${buildName}"
 
 pipeline {
   environment {
-    imagename = "maksfox/myapp"
+    //imagename = "maksfox/myapp"
     registryCredential = 'dockerhub_maks'
+    php_fpm_name = 'php_fpm_7.3'
     dockerImage = ''    
-  }     
+  }   
+//Агент выбирается master  
     agent {
-        label 'master'
+        label 'docker'
         }
+//Опрос scm каждые 2 минуты
     triggers { pollSCM('*/2 * * * *') }    
     options{
+//Хранит 10 историй сборок и артефактов      
             buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+            preserveStashes(buildCount: 5)
             timestamps()
+            ansiColor('xterm') //окрас ввывода в консоли
+            timestamps() // выводит временные отметки
         }
     stages {
             stage("perehod") {
@@ -22,10 +32,11 @@ pipeline {
                         sh 'cd /home/maks/app'
                     }         
             }
-            stage("build image") {
+            stage("Create Docker Image") {
                     steps {
                       script {
-                         dockerImage = docker.build imagename
+                         //dockerImage = docker.build imagename
+                         dockerImage = docker.build registry + "/$php_fpm_name" + ":$BUILD_NUMBER"
                       }   
                     }   
             }
