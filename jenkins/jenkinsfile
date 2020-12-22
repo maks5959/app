@@ -42,9 +42,9 @@ pipeline {
             }
             stage("Deploy Image") {
                     steps {
-                        docker.withRegistry([credentialsId: 'dockerhub_maks']) {
+                        withDockerRegistry([credentialsId: 'dockerhub_maks']) {
                       script {  
-                        dockerImage.push()
+                               dockerImage.push()
                           }  
                       }  
 
