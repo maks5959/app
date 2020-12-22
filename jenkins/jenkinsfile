@@ -44,7 +44,7 @@ pipeline {
                     steps {
                         //withDockerRegistry([credentialsId: 'dockerhub_maks', url: 'https://$registry']) {
                       script { 
-                          docker.withDockerRegistry( '', registryCredential ) {
+                          docker.withRegistry( '', registryCredential ) {
                                dockerImage.push()
                           }  
                       }  
