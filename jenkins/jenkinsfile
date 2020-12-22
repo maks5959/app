@@ -8,9 +8,9 @@ currentBuild.description = "Version ${buildName}"
 pipeline {
   environment {
     //imagename = "maksfox/myapp"
-    registry = "https://hub.docker.com/repository/docker/maksfox/myapp"
+    registry = "maksfox/myapp"
     registryCredential = 'dockerhub_maks'
-    php_fpm_name = 'php_fpm_7.3'
+    php_name = 'php_fpm_7.3'
     dockerImage = ''    
   }   
 //Агент выбирается master  
@@ -36,7 +36,7 @@ pipeline {
                     steps {
                       script {
                          //dockerImage = docker.build imagename
-                         dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                         dockerImage = docker.build registry + "/$php_name" + ":$BUILD_NUMBER"
                       }   
                     }   
             }
