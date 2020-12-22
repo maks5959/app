@@ -22,7 +22,6 @@ pipeline {
 //Хранит 10 историй сборок и артефактов      
             buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
             preserveStashes(buildCount: 5)
-            timestamps()
             ansiColor('xterm') //окрас ввывода в консоли
             timestamps() // выводит временные отметки
              }
