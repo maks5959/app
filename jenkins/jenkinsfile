@@ -42,7 +42,7 @@ pipeline {
             }
             stage("Deploy Image") {
                     steps {
-                        withDockerRegistry([credentialsId: 'dockerhub_maks']) {
+                        withDockerRegistry([credentialsId: 'dockerhub_maks', url: 'https://$registry']) {
                       script {  
                                dockerImage.push()
                           }  
