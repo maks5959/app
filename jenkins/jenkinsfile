@@ -14,7 +14,7 @@ pipeline {
   }   
 //Агент выбирается master  
     agent {
-        label 'docker'
+        label 'master'
         }
 //Опрос scm каждые 2 минуты
     triggers { pollSCM('*/2 * * * *') }    
