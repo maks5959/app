@@ -8,7 +8,7 @@ currentBuild.description = "Version ${buildName}"
 pipeline {
   environment {
     //imagename = "maksfox/myapp"
-    registry = "https://github.com/maks5959/"
+    registry = "https://hub.docker.com/repository/docker/maksfox/myapp"
     registryCredential = 'dockerhub_maks'
     php_fpm_name = 'php_fpm_7.3'
     dockerImage = ''    
@@ -32,7 +32,7 @@ pipeline {
                         sh 'cd /home/maks/app'
                     }         
             }
-            stage("Create Docker Image") {
+            stage("Build Docker Image") {
                     steps {
                       script {
                          //dockerImage = docker.build imagename
