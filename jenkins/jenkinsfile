@@ -44,13 +44,11 @@ pipeline {
                     steps {
                         docker.withRegistry([credentialsId: 'dockerhub_maks']) {
                       script {  
-                        docker.withRegistry( registryCredential ) {
-                           dockerImage.push()
-                        }  
+                        dockerImage.push()
+                          }  
                       }  
 
                 }
             }
           }    
-        }     
-}
+}     
