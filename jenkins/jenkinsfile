@@ -8,7 +8,7 @@ currentBuild.description = "Version ${buildName}"
 pipeline {
   environment {
     //imagename = "maksfox/myapp"
-    registry = "maksfox/myapp"
+    registry = "hub.docker.com/repository/docker/maksfox/myapp"
     registryCredential = 'dockerhub_maks'
     php_fpm_name = 'php_fpm_7.3'
     dockerImage = ''    
