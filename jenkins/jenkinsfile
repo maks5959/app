@@ -10,7 +10,7 @@ pipeline {
     //imagename = "maksfox/myapp"
     registry = "maksfox/myapp"
     registryCredential = 'dockerhub_maks'
-    php_name = 'php_fpm_7.3'
+    //php_name = 'php_fpm_7.3'
     dockerImage = ''    
   }   
 //Агент выбирается master  
